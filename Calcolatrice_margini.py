@@ -1,3 +1,5 @@
+#programma funzionante
+
 def calcolatrice_di_margini():
     a = 0
 
