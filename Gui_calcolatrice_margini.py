@@ -12,12 +12,49 @@ from tkinter import *                                                           
 from tkinter import ttk
 import tkinter.ttk
 
-#funzioni di calcolo per tutte le occasioni
 
-def Calcolo_prezzo_vendita():
+
+
+
+class App:
+    def __init__(self, master):
+
+
+        # divido in 2 parti uguali la finestra
+        leftFrame = Frame(master)  # , bg="red")
+        leftFrame.grid(row=0, column=0)
+        tkinter.ttk.Separator(master, orient=VERTICAL).grid(column=1, row=0, rowspan=3, sticky=NS)
+        rightFrame = Frame(master)  # , bg="yellow")
+        rightFrame.grid(row=0, column=2)
+
+        # faccio dove vanno inseriti i dati del primo programma
+        self.label_1 = Label(leftFrame, text="Inserisci costo del prodotto")
+        self.label_1.pack(side=TOP)
+        self.entry_1 = Entry(leftFrame)
+        self.entry_1.pack(side=TOP)
+        self.button_1 = Button(leftFrame, text="Usa la calcolatrice", bg="blue", command=self.Calcolo_prezzo_vendita, padx=2,
+                          pady=2)
+        self.button_1.pack(side=TOP)
+
+        # faccio dove vanno inseriti i dati del secondo programma
+        self.label_2 = Label(rightFrame, text="Inserisci costo del prodotto")
+        self.label_2.pack(side=TOP)
+        self.entry_2 = Entry(rightFrame)
+        self.entry_2.pack(side=TOP)
+
+        self.label_3 = Label(rightFrame, text="Inserisci a quanto lo hai venduto")
+        self.label_3.pack(side=TOP)
+        self.entry_3 = Entry(rightFrame)
+        self.entry_3.pack(side=TOP)
+        self.button_3 = Button(rightFrame, text="Usa la calcolatrice", bg="blue", command=self.Calcolo_margine_vendita, padx=2,
+                          pady=2)
+        self.button_3.pack(side=TOP)
+
+
+def Calcolo_prezzo_vendita(self):
     print("Va venduto ad un prezzo netto di euro ", entry_1 * 1.66666666667)
 
-def Calcolo_margine_vendita():
+def Calcolo_margine_vendita(self):
     if entry_2 > entry_3:
         print("Nessun margine, hai pagato piu di quanto hai speso! ")
     if entry_2 == entry_3:
@@ -27,42 +64,11 @@ def Calcolo_margine_vendita():
 
 
 
-root = Tk()                                                                     #inserisco una finestra vuota che ho chiamato root
-root.geometry("800x600")                                                        #do una dimensione alla mia finestra chiamate root
-root.wm_title("Calcolatrice di margini")                                        #modifico il titolo della finestra
-root.iconbitmap("Calculator-Android-R.ico")                                     #modifico l'icona della finestra
-
-#divido in 2 parti uguali la finestra
-leftFrame = Frame(root)#, bg="red")
-leftFrame.grid(row=0, column=0)
-tkinter.ttk.Separator(root, orient=VERTICAL).grid(column=1, row=0, rowspan=3, sticky=NS)
-rightFrame = Frame(root)#, bg="yellow")
-rightFrame.grid(row=0, column=2)
-
-
-#faccio dove vanno inseriti i dati del primo programma
-label_1 = Label(leftFrame, text="Inserisci costo del prodotto")
-label_1.pack(side=TOP)
-entry_1 = Entry(leftFrame)
-entry_1.pack(side=TOP)
-button_1 = Button(leftFrame, text="Usa la calcolatrice", bg="blue", command=Calcolo_prezzo_vendita, padx=2, pady=2)
-button_1.pack(side=TOP)
-
-
-#faccio dove vanno inseriti i dati del secondo programma
-label_2 = Label(rightFrame, text="Inserisci costo del prodotto")
-label_2.pack(side=TOP)
-entry_2 = Entry(rightFrame)
-entry_2.pack(side=TOP)
-
-label_3 = Label(rightFrame, text="Inserisci a quanto lo hai venduto")
-label_3.pack(side=TOP)
-entry_3 = Entry(rightFrame)
-entry_3.pack(side=TOP)
-button_3 = Button(rightFrame, text="Usa la calcolatrice", bg="blue", command=Calcolo_margine_vendita, padx=2, pady=2)
-button_3.pack(side=TOP)
-
-
+root = Tk()  # inserisco una finestra vuota che ho chiamato root
+root.geometry("800x600")  # do una dimensione alla mia finestra chiamate root
+root.wm_title("Calcolatrice di margini")  # modifico il titolo della finestra
+root.iconbitmap("Calculator-Android-R.ico")  # modifico l'icona della finestra
+app = App(root)
 
 root.mainloop()                                                                 #per tenere la finestra aperta per evitare che si chiuda subito
 
