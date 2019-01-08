@@ -8,16 +8,19 @@ Grafica per il programma di margini che ho
 
 """""""""
 
-from Calcolatrice_margini import calcolatrice_di_margini                     #importo la mia calcolatrrice di margini
-from tkinter import *                                   #importo la libreria GUI gia presente in python
+from Calcolatrice_margini import calcolatrice_di_margini                        #importo la mia calcolatrrice di margini
+from tkinter import *                                                           #importo la libreria GUI gia presente in python
 
 
-root = Tk()                                             #inserisco una finestra vuota che ho chiamato root
-root.geometry("800x600")                                #do una dimensione alla mia finestra chiamate root
+root = Tk()                                                                     #inserisco una finestra vuota che ho chiamato root
+root.geometry("800x600")                                                        #do una dimensione alla mia finestra chiamate root
+root.wm_title("Calcolatrice di margini")                                        #modifico il titolo della finestra
+root.iconbitmap("Calculator-Android-R.ico")                                     #modifico l'icona della finestra
 
 
 
-root.mainloop()                                         #per tenere la finestra aperta per evitare che si chiuda subito
+
+root.mainloop()                                                                 #per tenere la finestra aperta per evitare che si chiuda subito
 
 
 
@@ -70,4 +73,13 @@ import tkinter.messagebox
 
 status = Label(root, text="Preparing to do nothing....", bd=1, relief=SUNKEN, anchor=W)
 status.pack(side=BOTTOM, fill=X)
+"""
+
+"""
+#aggiungere immagini e icone
+#devo aggiungere le immagini nella stessa directory
+
+photo = PhotoImage(file="Logo Bax.png")
+label = Label(root, image=photo, heigh=200, width=200)
+label.pack()
 """
