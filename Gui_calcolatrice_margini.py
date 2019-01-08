@@ -24,7 +24,10 @@ def Calcolo_margine_vendita():
     margine_di_vendita_1 = int(num_2.get())
     margine_di_vendita_2 = int(num_3.get())
     risultato_margine = ((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)
+    guadagno = Label (root, text="Il margine e' di " + str(risultato_margine))
+    guadagno.grid(row=6, column=1)
     return
+"""    
     if margine_di_vendita_1 > margine_di_vendita_2:
         no_margine = Label (root, text="Nessun margine, hai pagato piu di quanto hai speso!")
         no_margine.grid(row=6, column=1)
@@ -34,11 +37,11 @@ def Calcolo_margine_vendita():
     elif margine_di_vendita_1 < margine_di_vendita_2:
         guadagno = Label(root, text="Va venduto ad un prezzo netto di euro " + str(risultato_margine))
         guadagno.grid(row=6, column=1)
-
+"""
 
 
 root = Tk()  # inserisco una finestra vuota che ho chiamato root
-#root.geometry("800x600")  # do una dimensione alla mia finestra chiamate root
+root.geometry("400x250")  # do una dimensione alla mia finestra chiamate root
 root.wm_title("Calcolatrice di margini")  # modifico il titolo della finestra
 root.iconbitmap("Calculator-Android-R.ico")  # modifico l'icona della finestra
 
