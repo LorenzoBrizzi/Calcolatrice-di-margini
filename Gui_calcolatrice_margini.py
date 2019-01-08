@@ -13,62 +13,72 @@ from tkinter import ttk
 import tkinter.ttk
 
 
+def Calcolo_prezzo_vendita():
+    costo_per_vendita = int(num_1.get())
+    costo_per_vendita_finito = costo_per_vendita * 1.66666666667
+    risultato_vendita = Label (root, text="Va venduto ad un prezzo netto di euro " + str(costo_per_vendita_finito))
+    risultato_vendita.grid(row=4, column=0)
+    return
 
-
-
-class App:
-    def __init__(self, master):
-
-
-        # divido in 2 parti uguali la finestra
-        leftFrame = Frame(master)  # , bg="red")
-        leftFrame.grid(row=0, column=0)
-        tkinter.ttk.Separator(master, orient=VERTICAL).grid(column=1, row=0, rowspan=3, sticky=NS)
-        rightFrame = Frame(master)  # , bg="yellow")
-        rightFrame.grid(row=0, column=2)
-
-        # faccio dove vanno inseriti i dati del primo programma
-        self.label_1 = Label(leftFrame, text="Inserisci costo del prodotto")
-        self.label_1.pack(side=TOP)
-        self.entry_1 = Entry(leftFrame)
-        self.entry_1.pack(side=TOP)
-        self.button_1 = Button(leftFrame, text="Usa la calcolatrice", bg="blue", command=self.Calcolo_prezzo_vendita, padx=2,
-                          pady=2)
-        self.button_1.pack(side=TOP)
-
-        # faccio dove vanno inseriti i dati del secondo programma
-        self.label_2 = Label(rightFrame, text="Inserisci costo del prodotto")
-        self.label_2.pack(side=TOP)
-        self.entry_2 = Entry(rightFrame)
-        self.entry_2.pack(side=TOP)
-
-        self.label_3 = Label(rightFrame, text="Inserisci a quanto lo hai venduto")
-        self.label_3.pack(side=TOP)
-        self.entry_3 = Entry(rightFrame)
-        self.entry_3.pack(side=TOP)
-        self.button_3 = Button(rightFrame, text="Usa la calcolatrice", bg="blue", command=self.Calcolo_margine_vendita, padx=2,
-                          pady=2)
-        self.button_3.pack(side=TOP)
-
-
-def Calcolo_prezzo_vendita(self):
-    print("Va venduto ad un prezzo netto di euro ", entry_1 * 1.66666666667)
-
-def Calcolo_margine_vendita(self):
-    if entry_2 > entry_3:
-        print("Nessun margine, hai pagato piu di quanto hai speso! ")
-    if entry_2 == entry_3:
-        print("Sei andato in pari! ")
-    elif entry_2 < entry_3:
-        print("Il margine con cui hai venduto è del ", ((entry_3 - entry_2) / entry_3) * 100, "%")
+def Calcolo_margine_vendita():
+    margine_di_vendita_1 = int(num_2.get())
+    margine_di_vendita_2 = int(num_3.get())
+    risultato_margine = ((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)
+    return
+    if margine_di_vendita_1 > margine_di_vendita_2:
+        no_margine = Label (root, text="Nessun margine, hai pagato piu di quanto hai speso!")
+        no_margine.grid(row=6, column=1)
+    elif margine_di_vendita_1 == margine_di_vendita_2:
+        in_pari = Label (root, text="Nessun margine, sei andato in pari!")
+        in_pari.grid(row=6, column=1)
+    elif margine_di_vendita_1 < margine_di_vendita_2:
+        guadagno = Label(root, text="Va venduto ad un prezzo netto di euro " + str(risultato_margine))
+        guadagno.grid(row=6, column=1)
 
 
 
 root = Tk()  # inserisco una finestra vuota che ho chiamato root
-root.geometry("800x600")  # do una dimensione alla mia finestra chiamate root
+#root.geometry("800x600")  # do una dimensione alla mia finestra chiamate root
 root.wm_title("Calcolatrice di margini")  # modifico il titolo della finestra
 root.iconbitmap("Calculator-Android-R.ico")  # modifico l'icona della finestra
-app = App(root)
+
+
+header = Label(root, text="Benvenuto nella calcolatrice!", font='Helvetica 10 bold', fg="#111111")
+header.grid(row=0, column=0)
+
+"""
+# divido in 2 parti uguali la finestra
+leftFrame = Frame(root)  # , bg="red")
+leftFrame.grid(row=2, column=0)
+tkinter.ttk.Separator(root, orient=VERTICAL).grid(column=1, row=2, rowspan=3, sticky=NS)
+rightFrame = Frame(root)  # , bg="yellow")
+rightFrame.grid(row=2, column=2)
+"""
+
+# faccio dove vanno inseriti i dati del primo programma
+label_1 = Label(root, text="Inserisci costo del prodotto")
+label_1.grid(row=1, column=0)
+num_1 = IntVar()
+entry_1 = Entry(root, textvariable=num_1)
+entry_1.grid(row=2, column=0)
+button_1 = Button(root, text="Usa la calcolatrice", bg="blue", command=Calcolo_prezzo_vendita, padx=2, pady=2, height=2, width=15)
+button_1.grid(row=3, column=0)
+
+# faccio dove vanno inseriti i dati del secondo programma
+label_2 = Label(root, text="Inserisci costo del prodotto")
+label_2.grid(row=1, column=1)
+num_2 = IntVar()
+entry_2 = Entry(root, textvariable=num_2)
+entry_2.grid(row=2, column=1)
+
+label_3 = Label(root, text="Inserisci a quanto lo hai venduto")
+label_3.grid(row=3, column=1)
+num_3 = IntVar()
+entry_3 = Entry(root, textvariable=num_3)
+entry_3.grid(row=4, column=1)
+button_3 = Button(root, text="Usa la calcolatrice", bg="blue", command=Calcolo_margine_vendita, padx=2, pady=2, height=2, width=15)
+button_3.grid(row=5, column=1)
+
 
 root.mainloop()                                                                 #per tenere la finestra aperta per evitare che si chiuda subito
 
