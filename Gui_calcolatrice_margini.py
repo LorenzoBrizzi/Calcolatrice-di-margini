@@ -11,7 +11,16 @@ Grafica per il programma di margini che ho
 from Calcolatrice_margini import calcolatrice_di_margini                     #importo la mia calcolatrrice di margini
 from tkinter import *                                   #importo la libreria GUI gia presente in python
 
+
 root = Tk()                                             #inserisco una finestra vuota che ho chiamato root
+root.geometry("800x600")                                #do una dimensione alla mia finestra chiamate root
+
+
+
+root.mainloop()                                         #per tenere la finestra aperta per evitare che si chiuda subito
+
+
+
 """
 topFrame = Frame(root)                                  #creo un frame top in root
 topFrame.pack()                                         #lo packo
@@ -48,11 +57,17 @@ entry1.grid(row=0, column=1)
 entry2.grid(row=1, column=1)
 """
 
+"""
 button_1 = Button(root, text="Usa la calcolatrice", fg="white", bg="black", command=calcolatrice_di_margini)        #con command posso inserire una funzione da eseguire quando viene premuto il pulsante
 button_1.pack()
+"""
+
+"""
+#faccio il footer
+
+import tkinter.messagebox
 
 
-root.mainloop()                                         #per tenere la finestra aperta per evitare che si chiuda subito
-
-
-
+status = Label(root, text="Preparing to do nothing....", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
+"""
