@@ -10,22 +10,30 @@ Grafica per il programma di margini che ho
 
 from tkinter import *                                                           #importo la libreria GUI gia presente in python
 from tkinter import ttk
-import tkinter.ttk
+#import tkinter.ttk
 
 
 def Calcolo_prezzo_vendita():
+    root_2 = Tk()
+    root_2.geometry("300x40")
+    root_2.wm_title("Calcolatrice di margini")
+    root_2.iconbitmap("Calculator-Android-R.ico")
     costo_per_vendita = int(num_1.get())
-    costo_per_vendita_finito = costo_per_vendita * 1.66666666667
-    risultato_vendita = Label (root, text="Va venduto ad un prezzo netto di euro " + str(costo_per_vendita_finito))
-    risultato_vendita.grid(row=4, column=0)
+    costo_per_vendita_finito = round((costo_per_vendita * 1.66666666667), 2)
+    risultato_vendita = Label (root_2, text="Va venduto ad un prezzo netto di euro " + str(costo_per_vendita_finito))
+    risultato_vendita.pack()
     return
 
 def Calcolo_margine_vendita():
+    root_3 = Tk()
+    root_3.geometry("300x40")
+    root_3.wm_title("Calcolatrice di margini")
+    root_3.iconbitmap("Calculator-Android-R.ico")
     margine_di_vendita_1 = int(num_2.get())
     margine_di_vendita_2 = int(num_3.get())
-    risultato_margine = ((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)
-    guadagno = Label (root, text="Il margine e' di " + str(risultato_margine))
-    guadagno.grid(row=6, column=1)
+    risultato_margine = round((((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)* 100), 2)
+    guadagno = Label (root_3, text="Il margine e' di " + str(risultato_margine))
+    guadagno.pack()
     return
 """    
     if margine_di_vendita_1 > margine_di_vendita_2:
@@ -41,7 +49,7 @@ def Calcolo_margine_vendita():
 
 
 root = Tk()  # inserisco una finestra vuota che ho chiamato root
-root.geometry("400x250")  # do una dimensione alla mia finestra chiamate root
+root.geometry("390x180")  # do una dimensione alla mia finestra chiamate root
 root.wm_title("Calcolatrice di margini")  # modifico il titolo della finestra
 root.iconbitmap("Calculator-Android-R.ico")  # modifico l'icona della finestra
 
@@ -60,27 +68,27 @@ rightFrame.grid(row=2, column=2)
 
 # faccio dove vanno inseriti i dati del primo programma
 label_1 = Label(root, text="Inserisci costo del prodotto")
-label_1.grid(row=1, column=0)
+label_1.grid(row=2, column=0)
 num_1 = IntVar()
-entry_1 = Entry(root, textvariable=num_1)
-entry_1.grid(row=2, column=0)
-button_1 = Button(root, text="Usa la calcolatrice", bg="blue", command=Calcolo_prezzo_vendita, padx=2, pady=2, height=2, width=15)
-button_1.grid(row=3, column=0)
+entry_1 = ttk.Entry(root, textvariable=num_1)
+entry_1.grid(row=3, column=0)
+button_1 = ttk.Button(root, text="Usa la calcolatrice", command=Calcolo_prezzo_vendita)
+button_1.grid(row=5, column=0)
 
 # faccio dove vanno inseriti i dati del secondo programma
 label_2 = Label(root, text="Inserisci costo del prodotto")
-label_2.grid(row=1, column=1)
+label_2.grid(row=2, column=1)
 num_2 = IntVar()
-entry_2 = Entry(root, textvariable=num_2)
-entry_2.grid(row=2, column=1)
+entry_2 = ttk.Entry(root, textvariable=num_2)
+entry_2.grid(row=3, column=1)
 
 label_3 = Label(root, text="Inserisci a quanto lo hai venduto")
-label_3.grid(row=3, column=1)
+label_3.grid(row=4, column=1)
 num_3 = IntVar()
-entry_3 = Entry(root, textvariable=num_3)
-entry_3.grid(row=4, column=1)
-button_3 = Button(root, text="Usa la calcolatrice", bg="blue", command=Calcolo_margine_vendita, padx=2, pady=2, height=2, width=15)
-button_3.grid(row=5, column=1)
+entry_3 = ttk.Entry(root, textvariable=num_3)
+entry_3.grid(row=5, column=1)
+button_3 = ttk.Button(root, text="Usa la calcolatrice", command=Calcolo_margine_vendita)
+button_3.grid(row=7, column=1)
 
 
 root.mainloop()                                                                 #per tenere la finestra aperta per evitare che si chiuda subito
