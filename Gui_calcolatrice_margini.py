@@ -1,73 +1,66 @@
-"""""""""
-Qui screivero le note per possibili futuri progetti su cui lavorare per poter fare un po di pratica:
+""""
+Calcolatrice di margini con gui fatta con tkinter:
+    1) Calcolatrice dove da una parte ti dice dato un numero x di costo a quanto andrebbe rivenduta la merce come importo netto dato un margine fisso di guadagno
+    2) Calcolatrice che ti dice il margine con il quale hai venduto la tua merce con 3 variabili:
+        1- Se hai speso piu di quanto hai incassato ti dice che hai pagato piu di quanto hai speso
+        2- Se hai speso quanto hai incassato ti dice che hai pagato quanto hai speso
+        3- Se hai speso meno di quanto hai incassato ti dice il margine percentuale di guadagno sulla vendita
+    Obbiettivi:
+        Avere finestre dove inserire testo e pulsanti da premere che eseguano funzioni cosi da mostrare in una nuova finestra il risultato desiderato
+    Extra:
+        Farlo diventare non troppo brutto esteticamente
+"""
 
-Grafica per il programma di margini che ho 
+from tkinter import *                                                                                                           #importo la libreria GUI gia presente in python e importo tutto *
+from tkinter import ttk                                                                                                         #da tkinter importo ttk che posso aggiungere per rendere piu carina la grafica
 
 
-
-
-"""""""""
-
-from tkinter import *                                                           #importo la libreria GUI gia presente in python
-from tkinter import ttk
-#import tkinter.ttk
-
-
-def Calcolo_prezzo_vendita():
-    root_2 = Tk()
+def Calcolo_prezzo_vendita():                                                                                                   #funzione 1) Calcolatrice
+    root_2 = Tk()                                                                                                               #setto che apra una nuova scheda con i suoi parametri
     root_2.geometry("300x40")
     root_2.wm_title("Calcolatrice di margini")
     root_2.iconbitmap("Calculator-Android-R.ico")
-    costo_per_vendita = int(num_1.get())
-    costo_per_vendita_finito = round((costo_per_vendita * 1.66666666667), 2)
-    risultato_vendita = Label (root_2, text="Va venduto ad un prezzo netto di euro " + str(costo_per_vendita_finito))
-    risultato_vendita.pack()
-    return
+    costo_per_vendita = int(num_1.get())                                                                                        #assegno ad una variabile il valore che ricavo da una entry nella gui e impongo che sia un numero
+    costo_per_vendita_finito = round((costo_per_vendita * 1.66666666667), 2)                                                    #assegno ad una variabile i calcoli da eseguire
+    risultato_vendita = Label (root_2, text="Va venduto ad un prezzo netto di euro " + str(costo_per_vendita_finito))           #mostro i risultati nella nuova finestra
+    risultato_vendita.pack()                                                                                                    #assegno i risultati nella scheda a caso tanto verra top centrato perche e' l'unico dato della finestra
+    return                                                                                                                      #prima o poi capiro a che cazzo serve return
 
-def Calcolo_margine_vendita():
-    root_3 = Tk()
+def Calcolo_margine_vendita():                                                                                                  #funzione 2) Calcolatrice
+    root_3 = Tk()                                                                                                               #setto che apra una nuova scheda con i suoi parametri
     root_3.geometry("300x40")
     root_3.wm_title("Calcolatrice di margini")
     root_3.iconbitmap("Calculator-Android-R.ico")
-    margine_di_vendita_1 = int(num_2.get())
-    margine_di_vendita_2 = int(num_3.get())
-    risultato_margine = round((((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)* 100), 2)
-    guadagno = Label (root_3, text="Il margine e' di " + str(risultato_margine))
-    guadagno.pack()
-    return
-"""    
-    if margine_di_vendita_1 > margine_di_vendita_2:
-        no_margine = Label (root, text="Nessun margine, hai pagato piu di quanto hai speso!")
-        no_margine.grid(row=6, column=1)
-    elif margine_di_vendita_1 == margine_di_vendita_2:
-        in_pari = Label (root, text="Nessun margine, sei andato in pari!")
-        in_pari.grid(row=6, column=1)
-    elif margine_di_vendita_1 < margine_di_vendita_2:
-        guadagno = Label(root, text="Va venduto ad un prezzo netto di euro " + str(risultato_margine))
-        guadagno.grid(row=6, column=1)
-"""
+    margine_di_vendita_1 = int(num_2.get())                                                                                     #assegno ad una variabile il valore che ricavo da una entry nella gui e impongo che sia un numero
+    margine_di_vendita_2 = int(num_3.get())                                                                                     #assegno ad una variabile il valore che ricavo da una entry nella gui e impongo che sia un numero
+    risultato_margine = round((((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)* 100), 2)                 #assegno ad una variabile i calcoli da eseguire
+    if margine_di_vendita_1 > margine_di_vendita_2:                                                                             #variabile 1 calcolatrice 2
+        no_margine = True
+        no_margine = Label (root_3, text="Nessun margine, hai pagato piu di quanto hai speso!")
+        no_margine.pack()
+    elif margine_di_vendita_1 == margine_di_vendita_2:                                                                          #variabile 2 calcolatrice 2
+        in_pari = True
+        in_pari = Label (root_3, text="Nessun margine, sei andato in pari!")
+        in_pari.pack()
+    elif margine_di_vendita_1 < margine_di_vendita_2:                                                                           #variabile 3 calcolatrice 2
+        guadagno = True
+        guadagno = Label(root_3, text="Il margine e' di " + str(risultato_margine))
+        guadagno.pack()
+    return                                                                                                                      #prima o poi capiro a che cazzo serve return
 
 
-root = Tk()  # inserisco una finestra vuota che ho chiamato root
-root.geometry("390x180")  # do una dimensione alla mia finestra chiamate root
-root.wm_title("Calcolatrice di margini")  # modifico il titolo della finestra
-root.iconbitmap("Calculator-Android-R.ico")  # modifico l'icona della finestra
+
+root = Tk()                                                                                                                     #inserisco una finestra vuota che ho chiamato root
+root.geometry("390x180")                                                                                                        #do una dimensione alla mia finestra chiamate root
+root.wm_title("Calcolatrice di margini")                                                                                        #modifico il titolo della finestra
+root.iconbitmap("Calculator-Android-R.ico")                                                                                     #modifico l'icona della finestra
 
 
-header = Label(root, text="Benvenuto nella calcolatrice!", font='Helvetica 10 bold', fg="#111111")
+header = Label(root, text="Benvenuto nella calcolatrice!", font='Helvetica 10 bold', fg="#111111")                              #metto un header top
 header.grid(row=0, column=0)
 
-"""
-# divido in 2 parti uguali la finestra
-leftFrame = Frame(root)  # , bg="red")
-leftFrame.grid(row=2, column=0)
-tkinter.ttk.Separator(root, orient=VERTICAL).grid(column=1, row=2, rowspan=3, sticky=NS)
-rightFrame = Frame(root)  # , bg="yellow")
-rightFrame.grid(row=2, column=2)
-"""
 
-# faccio dove vanno inseriti i dati del primo programma
-label_1 = Label(root, text="Inserisci costo del prodotto")
+label_1 = Label(root, text="Inserisci costo del prodotto")                                                                      #faccio dove vanno inseriti i dati della Calcolatrice 1
 label_1.grid(row=2, column=0)
 num_1 = IntVar()
 entry_1 = ttk.Entry(root, textvariable=num_1)
@@ -75,8 +68,8 @@ entry_1.grid(row=3, column=0)
 button_1 = ttk.Button(root, text="Usa la calcolatrice", command=Calcolo_prezzo_vendita)
 button_1.grid(row=5, column=0)
 
-# faccio dove vanno inseriti i dati del secondo programma
-label_2 = Label(root, text="Inserisci costo del prodotto")
+
+label_2 = Label(root, text="Inserisci costo del prodotto")                                                                      #faccio dove vanno inseriti i dati della Calcolatrice 2
 label_2.grid(row=2, column=1)
 num_2 = IntVar()
 entry_2 = ttk.Entry(root, textvariable=num_2)
@@ -91,10 +84,13 @@ button_3 = ttk.Button(root, text="Usa la calcolatrice", command=Calcolo_margine_
 button_3.grid(row=7, column=1)
 
 
-root.mainloop()                                                                 #per tenere la finestra aperta per evitare che si chiuda subito
+root.mainloop()                                                                                                                 #tengo aperta la mia finestra principale in loop senno si chiuderebbe subito
 
 
 
+
+
+#cose che ho usato per comprendere meglio tkinter prima di fare le cose qui sopra
 """
 topFrame = Frame(root)                                  #creo un frame top in root
 topFrame.pack()                                         #lo packo
@@ -153,4 +149,30 @@ status.pack(side=BOTTOM, fill=X)
 photo = PhotoImage(file="Logo Bax.png")
 label = Label(root, image=photo, heigh=200, width=200)
 label.pack()
+"""
+
+"""
+#funzione funzionante senza gli if
+
+def Calcolo_margine_vendita():
+    root_3 = Tk()
+    root_3.geometry("300x40")
+    root_3.wm_title("Calcolatrice di margini")
+    root_3.iconbitmap("Calculator-Android-R.ico")
+    margine_di_vendita_1 = int(num_2.get())
+    margine_di_vendita_2 = int(num_3.get())
+    risultato_margine = round((((margine_di_vendita_2 - margine_di_vendita_1) / margine_di_vendita_2)* 100), 2)
+    guadagno = Label (root_3, text="Il margine e' di " + str(risultato_margine))
+    guadagno.pack()
+    return
+"""
+
+"""
+# divido in 2 parti uguali la finestra
+
+leftFrame = Frame(root)  # , bg="red")
+leftFrame.grid(row=2, column=0)
+tkinter.ttk.Separator(root, orient=VERTICAL).grid(column=1, row=2, rowspan=3, sticky=NS)
+rightFrame = Frame(root)  # , bg="yellow")
+rightFrame.grid(row=2, column=2)
 """
